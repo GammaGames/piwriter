@@ -10,7 +10,6 @@ import subprocess
 import time
 import io
 
-
 config = ConfigParser()
 config.read('piwriter.ini')
 

@@ -6,7 +6,6 @@ from configparser import ConfigParser
 import keyboard
 import time
 
-
 last_time = None
 config = ConfigParser()
 config.read('piwriter.ini')
@@ -77,19 +76,21 @@ def _callback(event, callback, debug=False):
 
 @throttle()
 def _throttled(event, callback, debug=False):
+    global THROTTLE_TIME
     value = _callback(event, callback, debug)
     if debug:
         print(
-            f"Throttled {event.name} {'(already processed)' if not value else ''}"
+            f"Throttled {event.name} ({'already processed' if not value else f'{THROTTLE_TIME}s'})"
         )
 
 
 @debounce()
 def _debounced(event, callback, debug=False):
+    global DEBOUNCE_TIME
     value = _callback(event, callback, debug)
     if debug:
         print(
-            f"Debounced {event.name} {'(already processed)' if not value else ''}"
+            f"Debounced {event.name} ({'already processed' if not value else f'{DEBOUNCE_TIME}s'})"
         )
 
 

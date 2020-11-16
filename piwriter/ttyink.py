@@ -1,13 +1,23 @@
 #!/usr/bin/env python3
 
-import subprocess
+from configparser import ConfigParser
 from IT8951.interface import EPD
 from IT8951.display import AutoEPDDisplay
 from IT8951 import constants
 from PIL import Image
 import PIL.ImageOps
+import subprocess
 import time
 import io
+
+
+config = ConfigParser()
+config.read('piwriter.ini')
+
+try:
+    TTY_DEVICE = float(config["tty"]["device"])
+except KeyError:
+    TTY_DEVICE = 1
 
 
 class TtyInk():
@@ -53,9 +63,10 @@ class TtyInk():
             print(f"Time to display: {round(time.time() - start, 3)}s")
 
     def get_screen(self):
+        global TTY_DEVICE
         start = time.time()
         output = subprocess.run(
-            f"./pyink/grab-tty.sh {self.dims[0]} {self.dims[1]}".split(),
+            f"./piwriter/grab-tty.sh {TTY_DEVICE}".split(),
             stdout=subprocess.PIPE,
             stderr=subprocess.DEVNULL
         )

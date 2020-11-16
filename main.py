@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 from IT8951 import constants
-from pyink.keybounce import keybounce
-from pyink.ttyink import TtyInk
+from piwriter.keybounce import keybounce
+from piwriter.ttyink import TtyInk
 
 def main():
     with TtyInk(vcom=-1.34, debug=True) as screen:

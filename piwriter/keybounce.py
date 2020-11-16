@@ -1,21 +1,35 @@
 #!/usr/bin/env python3
 
+from functools import wraps
 from threading import Timer
+from configparser import ConfigParser
 import keyboard
 import time
 
 
 last_time = None
+config = ConfigParser()
+config.read('piwriter.ini')
+
+try:
+    THROTTLE_TIME = float(config["keybounce"]["throttle_time"])
+except KeyError:
+    THROTTLE_TIME = 1.0
+
+try:
+    DEBOUNCE_TIME = float(config["keybounce"]["debounce_time"])
+except KeyError:
+    DEBOUNCE_TIME = 0.5
 
 
-def throttle(wait=None):
-    global global_wait
+def throttle():
     def decorate(fn):
+        global THROTTLE_TIME
         start_time = None
 
         def throttled(*args, **kwargs):
             nonlocal start_time
-            if start_time is None or time.time() - start_time >= (global_wait if wait is None else wait):
+            if start_time is None or time.time() - start_time >= THROTTLE_TIME:
                 result = fn(*args, **kwargs)
                 start_time = time.time()
                 return result
@@ -23,14 +37,15 @@ def throttle(wait=None):
     return decorate
 
 
-def debounce(wait=None):
+def debounce():
     def decorator(fn):
+        global DEBOUNCE_TIME
         def debounced(*args, **kwargs):
             try:
                 debounced.timer.cancel()
             except AttributeError:
                 pass
-            debounced.timer = Timer(wait, lambda: fn(*args, **kwargs))
+            debounced.timer = Timer(DEBOUNCE_TIME, lambda: fn(*args, **kwargs))
             debounced.timer.start()
         return debounced
     return decorator
@@ -60,7 +75,7 @@ def _callback(event, callback, debug=False):
     return False
 
 
-@throttle(wait=1.0)
+@throttle()
 def _throttled(event, callback, debug=False):
     value = _callback(event, callback, debug)
     if debug:
@@ -69,7 +84,7 @@ def _throttled(event, callback, debug=False):
         )
 
 
-@debounce(wait=0.5)
+@debounce()
 def _debounced(event, callback, debug=False):
     value = _callback(event, callback, debug)
     if debug:

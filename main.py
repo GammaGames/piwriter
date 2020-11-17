@@ -3,9 +3,10 @@
 from IT8951 import constants
 from piwriter.keybounce import keybounce
 from piwriter.ttyink import TtyInk
+from PIL import Image
 
 def main():
-    with TtyInk(vcom=-1.34, debug=True) as screen:
+    with TtyInk(vcom=-1.34, image_filter=Image.HAMMING, debug=True) as screen:
         screen.refresh(full=True, display_mode=constants.DisplayModes.GC16)
         waiting = False
 

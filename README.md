@@ -24,4 +24,4 @@ this is a test
 * python modules
 * apt packages
 * .bashrc
-* Set font
+* Set font (goha 8x16)

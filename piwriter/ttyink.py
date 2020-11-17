@@ -20,10 +20,17 @@ except KeyError:
 
 
 class TtyInk():
-    def __init__(self, vcom=None, display_mode=constants.DisplayModes.GLR16, debug=False):
+    def __init__(
+        self,
+        vcom=None,
+        display_mode=constants.DisplayModes.GLR16,
+        image_filter=Image.NEAREST,
+        debug=False
+    ):
         start = time.time()
         self.vcom = vcom
         self.display_mode = display_mode
+        self.image_filter = image_filter
         self.debug = debug
         self.epd = EPD()
         self.display = AutoEPDDisplay(epd=self.epd, vcom=self.vcom)
@@ -74,8 +81,7 @@ class TtyInk():
             start = time.time()
 
         image = Image.open(io.BytesIO(output.stdout))
-        # image = PIL.ImageOps.invert(image)
-        image = image.resize(self.dims, Image.NEAREST)
+        image = image.resize(self.dims, self.image_filter)
 
         if self.debug:
             print(f"Time to transform image: {round(time.time() - start, 3)}s")

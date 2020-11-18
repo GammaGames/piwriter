@@ -8,7 +8,7 @@ from PIL import Image
 
 def main():
     with TtyInk(vcom=-1.34, image_filter=Image.HAMMING, debug=True) as screen:
-        screen.refresh(full=True, display_mode=constants.DisplayModes.GLR16)  # A2
+        screen.refresh(full=True, display_mode=constants.DisplayModes.GLR16)
         waiting = False
 
         def _update():

@@ -5,7 +5,6 @@ from IT8951.interface import EPD
 from IT8951.display import AutoEPDDisplay
 from IT8951 import constants
 from PIL import Image
-import PIL.ImageOps
 import subprocess
 import time
 import io
@@ -58,7 +57,6 @@ class TtyInk():
 
     def display_to_screen(self, image, full=False, display_mode=None):
         start = time.time()
-        paste_coords = [0, 0]
         self.display.frame_buf.paste(image, [0, 0])
         if full:
             self.display.draw_full(self.display_mode if display_mode is None else display_mode)
@@ -88,12 +86,12 @@ class TtyInk():
 
         return image
 
-    def wait():
+    def wait(self):
         self.epd.wait_display_ready()
 
 
 def main():
-    with TtyEink(vcom=-1.34, debug=True) as screen:
+    with TtyInk(vcom=-1.34, debug=True) as screen:
         screen.refresh(full=True, display_mode=constants.DisplayModes.GC16)
 
         while input("q to quit:") != "q":

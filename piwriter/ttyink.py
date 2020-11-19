@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from configparser import ConfigParser
 from IT8951.interface import EPD
 from IT8951.display import AutoEPDDisplay
 from IT8951 import constants
@@ -8,12 +7,17 @@ from PIL import Image
 import subprocess
 import time
 import io
+import pathlib
+try:
+    from piwriter.config import get_config
+except ImportError:
+    from config import get_config
 
-config = ConfigParser()
-config.read('piwriter.ini')
+SCRIPT_DIRECTORY = pathlib.Path(__file__).parent
+CONFIG = get_config()
 
 try:
-    TTY_DEVICE = float(config["tty"]["device"])
+    TTY_DEVICE = float(CONFIG["tty"]["device"])
 except KeyError:
     TTY_DEVICE = 1
 
@@ -70,7 +74,7 @@ class TtyInk():
         global TTY_DEVICE
         start = time.time()
         output = subprocess.run(
-            f"./piwriter/grab-tty.sh {TTY_DEVICE}".split(),
+            f"{SCRIPT_DIRECTORY}/grab-tty.sh {TTY_DEVICE}".split(),
             stdout=subprocess.PIPE,
             stderr=subprocess.DEVNULL
         )

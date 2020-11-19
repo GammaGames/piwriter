@@ -2,21 +2,23 @@
 
 from functools import wraps
 from threading import Timer
-from configparser import ConfigParser
 import keyboard
 import time
+try:
+    from piwriter.config import get_config
+except ImportError:
+    from config import get_config
 
 last_time = None
-config = ConfigParser()
-config.read('piwriter.ini')
+CONFIG = get_config()
 
 try:
-    THROTTLE_TIME = float(config["keybounce"]["throttle_time"])
+    THROTTLE_TIME = float(CONFIG["keybounce"]["throttle_time"])
 except KeyError:
     THROTTLE_TIME = 1.0
 
 try:
-    DEBOUNCE_TIME = float(config["keybounce"]["debounce_time"])
+    DEBOUNCE_TIME = float(CONFIG["keybounce"]["debounce_time"])
 except KeyError:
     DEBOUNCE_TIME = 0.5
 

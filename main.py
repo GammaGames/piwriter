@@ -3,6 +3,7 @@
 from IT8951 import constants
 from piwriter.keybounce import keybounce
 from piwriter.ttyink import TtyInk
+from piwriter.screensaver import get_screensaver
 from PIL import Image
 
 
@@ -20,6 +21,11 @@ def main():
 
         keybounce(callback=_update, debug=True)
         input("Updating...")
+        screen.display_to_screen(
+            get_screensaver(screen.dims),
+            full=True,
+            display_mode=constants.DisplayModes.GC16
+        )
 
 
 if __name__ == "__main__":

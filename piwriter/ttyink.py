@@ -49,7 +49,7 @@ class TtyInk():
     def __enter__(self):
         return self
 
-    def __exit__(self):
+    def __exit__(self, _type, _value, _traceback):
         pass
 
     def refresh(self, full=False, display_mode=None):

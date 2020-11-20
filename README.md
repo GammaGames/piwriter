@@ -8,4 +8,9 @@ A python tool to use a waveshare e-ink display with a raspberry pi
 * python modules
 * apt packages
 * .bashrc
-* Set font (goha 8x16)
+* set font (goha 8x16)
+* set resolution
+* create aliases:
+  * toggle wifi
+  * connect to wifi
+  * 

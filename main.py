@@ -5,10 +5,13 @@ from piwriter.keybounce import keybounce
 from piwriter.ttyink import TtyInk
 from piwriter.screensaver import get_screensaver
 from PIL import Image
+import click
 
 
-def main():
-    with TtyInk(vcom=-1.34, image_filter=Image.HAMMING, debug=True) as screen:
+@click.command()
+@click.option('--debug', is_flag=True, default=False)
+def main(debug):
+    with TtyInk(vcom=-1.34, image_filter=Image.HAMMING, debug=debug) as screen:
         screen.refresh(full=True, display_mode=constants.DisplayModes.GLR16)
         waiting = False
 
@@ -19,10 +22,10 @@ def main():
                 screen.refresh()
                 waiting = False
 
-        keybounce(callback=_update, debug=True)
+        keybounce(callback=_update, debug=debug)
         input("Listening...")
         screen.display_to_screen(
-            get_screensaver(screen.dims, debug=True),
+            get_screensaver(screen.dims, debug=debug),
             full=True,
             display_mode=constants.DisplayModes.GC16
         )

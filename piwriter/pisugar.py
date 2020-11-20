@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-import subprocess
 import socket
+
 
 def get_charge():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

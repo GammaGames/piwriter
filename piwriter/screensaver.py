@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from IT8951 import constants
-from PIL import Image, ImageEnhance, ImageFilter
+from PIL import Image
 import os
 import random
 import pathlib
@@ -13,6 +13,7 @@ except ImportError:
 
 SCRIPT_DIRECTORY = pathlib.Path(__file__).parent
 IMAGE_DIRECTORY = f"{SCRIPT_DIRECTORY}/../img"
+
 
 def get_screensaver(dimensions, debug=False):
     start = time.time()

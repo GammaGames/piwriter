@@ -41,6 +41,7 @@ def throttle():
 def debounce():
     def decorator(fn):
         global DEBOUNCE_TIME
+
         def debounced(*args, **kwargs):
             try:
                 debounced.timer.cancel()
@@ -103,6 +104,7 @@ def keybounce(callback, debug=False):
             _debounced(event, callback, debug)
 
     hook_fun = keyboard.hook(_on_key)
+    return hook_fun
 
 
 def main():

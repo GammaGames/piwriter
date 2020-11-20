@@ -49,7 +49,7 @@ class TtyInk():
     def __enter__(self):
         return self
 
-    def __exit__(self, type, value, traceback):
+    def __exit__(self):
         pass
 
     def refresh(self, full=False, display_mode=None):
@@ -102,5 +102,5 @@ def main():
             screen.refresh()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

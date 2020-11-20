@@ -15,15 +15,8 @@ IMAGE_DIRECTORY = f"{SCRIPT_DIRECTORY}/../img"
 
 def get_screensaver(dimensions):
     logo = Image.open(f"{IMAGE_DIRECTORY}/piwriter.png")
-    logo_size = int(min(dimensions) / 3)
+    logo_size = int(min(dimensions) / 2.5)
     logo = logo.resize((logo_size, logo_size), Image.LANCZOS)
-
-    # Create blur behind image
-    logo_blur = Image.new("RGB", logo.size, 0xffffff)
-    blur_image = Image.new("RGBA", logo.size)
-    blur_image.paste(logo_blur, (0, 0), logo)
-    for i in range(3):
-        blur_image = blur_image.filter(ImageFilter.BLUR)
 
     filename = random.choice(os.listdir(f"{IMAGE_DIRECTORY}/bg"))
     image = Image.open(f"{IMAGE_DIRECTORY}/bg/{filename}")
@@ -52,7 +45,6 @@ def get_screensaver(dimensions):
         int((image.width - logo.width) / 2),
         int((image.height - logo.height) / 2)
     ]
-    image.paste(blur_image, logo_pos, blur_image)
     image.paste(logo, logo_pos, logo)
     return image
 

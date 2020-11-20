@@ -20,11 +20,12 @@ def main():
                 waiting = False
 
         keybounce(callback=_update, debug=True)
-        input("Updating...")
+        input("Listening...")
         screen.display_to_screen(
             get_screensaver(screen.dims),
             full=True,
-            display_mode=constants.DisplayModes.GC16
+            display_mode=constants.DisplayModes.GC16,
+            debug=True
         )
 
 

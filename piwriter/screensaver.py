@@ -5,6 +5,7 @@ from PIL import Image, ImageEnhance, ImageFilter
 import os
 import random
 import pathlib
+import time
 try:
     from piwriter.ttyink import TtyInk
 except ImportError:
@@ -13,7 +14,8 @@ except ImportError:
 SCRIPT_DIRECTORY = pathlib.Path(__file__).parent
 IMAGE_DIRECTORY = f"{SCRIPT_DIRECTORY}/../img"
 
-def get_screensaver(dimensions):
+def get_screensaver(dimensions, debug=False):
+    start = time.time()
     logo = Image.open(f"{IMAGE_DIRECTORY}/piwriter.png")
     logo_size = int(min(dimensions) / 2.5)
     logo = logo.resize((logo_size, logo_size), Image.LANCZOS)
@@ -42,6 +44,8 @@ def get_screensaver(dimensions):
         int((image.height - logo.height) / 2)
     ]
     image.paste(logo, logo_pos, logo)
+    if debug:
+        print(f"Time to create screensaver: {round(time.time() - start, 3)}s")
     return image
 
 
@@ -50,7 +54,8 @@ def main():
         screen.display_to_screen(
             get_screensaver(screen.dims),
             full=True,
-            display_mode=constants.DisplayModes.GC16
+            display_mode=constants.DisplayModes.GC16,
+            debug=True
         )
 
 

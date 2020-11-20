@@ -1,22 +1,6 @@
-.-_-.-_-.-_-.-_.-._.-._.-.
-abcdefghijklmnopqrstuvwxyz
+# PiWriter
 
-# foo bar
-
-baz
-
----
-
-this is a long line abcdefghijklmnopqrstuvwyz 1234567890 abcdefghijklmnopqrstuvwxyz thist test test
-
-this is a test
-
-* this
-* is
-* a
-* list
-
-*foo* **bar** ~~baz~~
+A python tool to use a waveshare e-ink display with a raspberry pi
 
 # Todo
 

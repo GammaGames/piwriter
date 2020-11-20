@@ -1,0 +1,14 @@
+[Unit]
+Description=My Script Service
+After=multi-user.target
+
+[Service]
+WorkingDirectory=/home/pi/piwriter
+Type=idle
+User=pi
+ExecStart=/home/pi/piwriter/main.py &> /dev/null
+ExecStop=/home/pi/piwriter/piwriter/screensaver.py &> /dev/null
+# Restart=always
+
+[Install]
+WantedBy=multi-user.target

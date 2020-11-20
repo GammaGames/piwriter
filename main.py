@@ -22,10 +22,9 @@ def main():
         keybounce(callback=_update, debug=True)
         input("Listening...")
         screen.display_to_screen(
-            get_screensaver(screen.dims),
+            get_screensaver(screen.dims, debug=True),
             full=True,
-            display_mode=constants.DisplayModes.GC16,
-            debug=True
+            display_mode=constants.DisplayModes.GC16
         )
 
 

@@ -52,10 +52,9 @@ def get_screensaver(dimensions, debug=False):
 def main():
     with TtyInk(vcom=-1.34, debug=True) as screen:
         screen.display_to_screen(
-            get_screensaver(screen.dims),
+            get_screensaver(screen.dims, debug=True),
             full=True,
-            display_mode=constants.DisplayModes.GC16,
-            debug=True
+            display_mode=constants.DisplayModes.GC16
         )
 
 

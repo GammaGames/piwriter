@@ -36,10 +36,6 @@ def get_screensaver(dimensions):
         resize = (0, offset, image.width, image.height - offset)
 
     image = image.crop(resize).resize(dimensions, Image.LANCZOS)
-    conrast = ImageEnhance.Brightness(image)
-    image = conrast.enhance(0.3)
-    brightness = ImageEnhance.Brightness(image)
-    image = brightness.enhance(3.5)
 
     logo_pos = [
         int((image.width - logo.width) / 2),

@@ -1,4 +1,4 @@
-![preview image](doc/preview.png)
+![preview image](docs/preview.png)
 
 A service to use the Waveshare E-ink display as a screen for the Raspberry Pi 
 

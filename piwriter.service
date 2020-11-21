@@ -1,13 +1,12 @@
 [Unit]
-Description=My Script Service
+Description=PiWriter display driver
 After=multi-user.target
 
 [Service]
 WorkingDirectory=/home/pi/piwriter
 Type=idle
-User=pi
-ExecStart=/home/pi/piwriter/main.py run &> /dev/null
-ExecStop=/home/pi/piwriter/main.py sleep &> /dev/null
+ExecStart=/usr/bin/python3 /home/pi/piwriter/main.py run
+ExecStop=/usr/bin/python3 /home/pi/piwriter/main.py sleep
 # Restart=always
 
 [Install]

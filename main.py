@@ -6,6 +6,7 @@ from piwriter.ttyink import TtyInk
 from piwriter.screensaver import get_screensaver
 from PIL import Image
 import click
+import time
 
 @click.group()
 def cli():
@@ -27,12 +28,8 @@ def run(debug):
                 waiting = False
 
         keybounce(callback=_update, debug=debug)
-        input("Listening...")
-        screen.display_to_screen(
-            get_screensaver(screen.dims, debug=debug),
-            full=True,
-            display_mode=constants.DisplayModes.GC16
-        )
+        while True:
+            time.sleep(1000)
 
 
 @cli.command()

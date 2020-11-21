@@ -6,8 +6,8 @@ After=multi-user.target
 WorkingDirectory=/home/pi/piwriter
 Type=idle
 User=pi
-ExecStart=/home/pi/piwriter/main.py &> /dev/null
-ExecStop=/home/pi/piwriter/piwriter/screensaver.py &> /dev/null
+ExecStart=/home/pi/piwriter/main.py run &> /dev/null
+ExecStop=/home/pi/piwriter/main.py sleep &> /dev/null
 # Restart=always
 
 [Install]

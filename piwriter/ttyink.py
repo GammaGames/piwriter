@@ -74,7 +74,7 @@ class TtyInk():
         global TTY_DEVICE
         start = time.time()
         output = subprocess.run(
-            f"{SCRIPT_DIRECTORY}/grab-tty.sh {TTY_DEVICE}".split(),
+            f"{SCRIPT_DIRECTORY}/tty.sh {TTY_DEVICE}".split(),
             stdout=subprocess.PIPE,
             stderr=subprocess.DEVNULL
         )

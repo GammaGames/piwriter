@@ -16,18 +16,24 @@ def cli():
 
 
 @cli.command()
-@click.argument("command", type=click.Choice(["enable", "disable", "connect"], case_sensitive=False))
+@click.argument(
+    "command",
+    type=click.Choice(
+        ["enable", "on", "disable", "off", "connect", "setup"],
+        case_sensitive=False
+    )
+)
 @click.argument("username", required=False, type=str)
 @click.argument("password", required=False, type=str)
 @click.option("--debug", is_flag=True, default=False)
 def wifi(command, username, password, debug):
-    if command == "enable":
+    if command in ["enable", "on"]:
         util.enable_wifi()
         util.enable_dhcpd()
-    elif command == "disable":
+    elif command in ["disable", "off"]:
         util.disable_wifi()
         util.disable_dhcpd()
-    elif command == "connect":
+    elif command in ["connect", "setup"]:
         if username is None:
             print("Username is required!")
             quit()

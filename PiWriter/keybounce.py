@@ -5,7 +5,7 @@ from threading import Timer
 import keyboard
 import time
 try:
-    from piwriter.config import get_config
+    from PiWriter.config import get_config
 except ImportError:
     from config import get_config
 

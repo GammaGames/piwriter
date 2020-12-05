@@ -2,12 +2,14 @@
 Description=PiWriter display driver
 After=multi-user.target
 
+[Install]
+WantedBy=multi-user.target
+
 [Service]
 WorkingDirectory=/home/pi/piwriter
 Type=idle
-ExecStart=/usr/bin/python3 /home/pi/piwriter/main.py run
-ExecStop=/usr/bin/python3 /home/pi/piwriter/main.py sleep
-# Restart=always
-
-[Install]
-WantedBy=multi-user.target
+ExecStart=/usr/bin/python3 /home/pi/piwriter/piwriter.py start
+ExecRestart=/usr/bin/python3 /home/pi/piwriter/piwriter.py start
+ExecStop=/usr/bin/python3 /home/pi/piwriter/piwriter.py stop
+TimeoutSec=10
+Restart=always

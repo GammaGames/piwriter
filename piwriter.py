@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 from IT8951 import constants
-from piwriter.keybounce import keybounce
-from piwriter.ttyink import TtyInk
-from piwriter.screensaver import get_screensaver
-from piwriter import util
+from PiWriter.keybounce import keybounce
+from PiWriter.ttyink import TtyInk
+from PiWriter.screensaver import get_screensaver
+from PiWriter import util
 from PIL import Image
 import click
 import time
@@ -39,7 +39,7 @@ def wifi(command, username, password, debug):
 
 @cli.command()
 @click.option("--debug", is_flag=True, default=False)
-def run(debug):
+def start(debug):
     with TtyInk(vcom=-1.34, image_filter=Image.HAMMING, debug=debug) as screen:
         screen.refresh(full=True, display_mode=constants.DisplayModes.GLR16)
         waiting = False
@@ -58,7 +58,7 @@ def run(debug):
 
 @cli.command()
 @click.option("--debug", is_flag=True, default=False)
-def sleep(debug):
+def stop(debug):
     with TtyInk(vcom=-1.34, image_filter=Image.HAMMING, debug=debug) as screen:
         screen.display_to_screen(
             get_screensaver(screen.dims, debug=debug),

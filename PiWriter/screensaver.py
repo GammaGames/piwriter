@@ -7,7 +7,7 @@ import random
 import pathlib
 import time
 try:
-    from piwriter.ttyink import TtyInk
+    from PiWriter.ttyink import TtyInk
 except ImportError:
     from ttyink import TtyInk
 

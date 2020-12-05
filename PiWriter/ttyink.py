@@ -9,7 +9,7 @@ import time
 import io
 import pathlib
 try:
-    from piwriter.config import get_config
+    from PiWriter.config import get_config
 except ImportError:
     from config import get_config
 

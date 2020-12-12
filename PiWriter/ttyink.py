@@ -2,7 +2,7 @@
 
 from IT8951.interface import EPD
 from IT8951.display import AutoEPDDisplay
-from IT8951 import constants
+from IT8951.constants import DisplayModes
 from PIL import Image
 import subprocess
 import time
@@ -30,7 +30,7 @@ except KeyError:
 class TtyInk():
     def __init__(
         self,
-        display_mode=constants.DisplayModes.GLR16,
+        display_mode=DisplayModes.GL16,
         image_filter=Image.NEAREST,
         debug=False
     ):
@@ -100,7 +100,7 @@ class TtyInk():
 
 def main():
     with TtyInk(debug=True) as screen:
-        screen.refresh(full=True, display_mode=constants.DisplayModes.GC16)
+        screen.refresh(full=True, display_mode=DisplayModes.GC16)
 
         while input("q to quit:") != "q":
             screen.refresh()

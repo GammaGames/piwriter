@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from IT8951 import constants
+from IT8951.constants import DisplayModes
 from PiWriter.keybounce import keybounce
 from PiWriter.ttyink import TtyInk
 from PiWriter.screensaver import get_screensaver
@@ -49,7 +49,7 @@ def start(debug):
     if debug:
         print("Starting...")
     with TtyInk(image_filter=Image.HAMMING, debug=debug) as screen:
-        screen.refresh(full=True, display_mode=constants.DisplayModes.GLR16)
+        screen.refresh(full=True, display_mode=DisplayModes.GL16)
         waiting = False
 
         def _update():
@@ -73,7 +73,7 @@ def stop(debug):
         screen.display_to_screen(
             get_screensaver(screen.dims, debug=debug),
             full=True,
-            display_mode=constants.DisplayModes.GC16
+            display_mode=DisplayModes.GC16
         )
 
 

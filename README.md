@@ -26,3 +26,6 @@ curl -s https://github.com/GammaGames/piwriter/raw/main/setup.sh | bash -x
   * set font (goha 8x16)
   * set resolution
   * `sudo systemctl link /home/pi/piwriter/piwriter.service`
+* website:
+  * home page with giant hero image that covers whole page
+  * install script shortcut

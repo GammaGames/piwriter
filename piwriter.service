@@ -11,5 +11,5 @@ Type=idle
 ExecStart=/usr/bin/python3 /home/pi/piwriter/piwriter.py start
 ExecRestart=/usr/bin/python3 /home/pi/piwriter/piwriter.py start
 ExecStop=/usr/bin/python3 /home/pi/piwriter/piwriter.py stop
-TimeoutSec=10
+# TimeoutSec=10
 Restart=always

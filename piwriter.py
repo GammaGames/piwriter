@@ -46,7 +46,9 @@ def wifi(command, username, password, debug):
 @cli.command()
 @click.option("--debug", is_flag=True, default=False)
 def start(debug):
-    with TtyInk(vcom=-1.34, image_filter=Image.HAMMING, debug=debug) as screen:
+    if debug:
+        print("Starting...")
+    with TtyInk(image_filter=Image.HAMMING, debug=debug) as screen:
         screen.refresh(full=True, display_mode=constants.DisplayModes.GLR16)
         waiting = False
 
@@ -65,7 +67,9 @@ def start(debug):
 @cli.command()
 @click.option("--debug", is_flag=True, default=False)
 def stop(debug):
-    with TtyInk(vcom=-1.34, image_filter=Image.HAMMING, debug=debug) as screen:
+    if debug:
+        print("Stopping...")
+    with TtyInk(image_filter=Image.HAMMING, debug=debug) as screen:
         screen.display_to_screen(
             get_screensaver(screen.dims, debug=debug),
             full=True,

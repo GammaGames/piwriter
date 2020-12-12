@@ -21,22 +21,26 @@ try:
 except KeyError:
     TTY_DEVICE = 1
 
+try:
+    VCOM = float(CONFIG["tty"]["VCOM"])
+except KeyError:
+    VCOM = -1.34
+
 
 class TtyInk():
     def __init__(
         self,
-        vcom=None,
         display_mode=constants.DisplayModes.GLR16,
         image_filter=Image.NEAREST,
         debug=False
     ):
+        global VCOM
         start = time.time()
-        self.vcom = vcom
         self.display_mode = display_mode
         self.image_filter = image_filter
         self.debug = debug
         self.epd = EPD()
-        self.display = AutoEPDDisplay(epd=self.epd, vcom=self.vcom)
+        self.display = AutoEPDDisplay(epd=self.epd, vcom=VCOM)
         self.dims = (self.display.width, self.display.height)
         self.prev = None
         if self.debug:
@@ -95,7 +99,7 @@ class TtyInk():
 
 
 def main():
-    with TtyInk(vcom=-1.34, debug=True) as screen:
+    with TtyInk(debug=True) as screen:
         screen.refresh(full=True, display_mode=constants.DisplayModes.GC16)
 
         while input("q to quit:") != "q":

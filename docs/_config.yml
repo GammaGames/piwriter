@@ -1,0 +1,20 @@
+# ----------- CONFIGURABLE START -----------
+title:            "PiWriter"
+description:      ""
+url:              https://piwriter.com
+
+links:
+  - name:         Home
+    url:          /
+  - name:         Install
+    url:          /install
+  - name:         GitHub
+    url:          https://github.com/gammagames/piwriter/
+    external:     true
+
+# ------------ CONFIGURABLE END ------------
+
+defaults:
+  - values:
+      layout: "default"
+      fetch_releases: false

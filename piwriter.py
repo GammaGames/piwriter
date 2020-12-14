@@ -49,7 +49,7 @@ def start(debug):
     if debug:
         print("Starting...")
     with TtyInk(image_filter=Image.HAMMING, debug=debug) as screen:
-        screen.refresh(full=True, display_mode=DisplayModes.GL16)
+        screen.refresh(full=True)
         waiting = False
 
         def _update():

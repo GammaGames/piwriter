@@ -29,3 +29,7 @@ curl -s https://github.com/GammaGames/piwriter/raw/main/setup.sh | bash -x
 * website:
   * home page with giant hero image that covers whole page
   * install script shortcut
+
+```sh
+PATH="$HOME/piwriter/bin:$PATH"
+```

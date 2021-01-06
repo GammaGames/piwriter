@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+pw.help() {
+    echo "TODO"
+}
+
+pw.open() {
+    if [ -z "$1" ]; then
+        emacsclient -t -a ''
+    else
+        emacsclient $2
+    fi
+}
+
+pw.sync() {
+    echo "TODO"
+}
+
+if [ "$(type -t pw.$1)" == "function" ]; then
+    "pw.$@"
+elif [ -z "$1" ]; then
+    pw.help
+fi

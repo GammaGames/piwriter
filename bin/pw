@@ -8,7 +8,7 @@ pw.open() {
     if [ -z "$1" ]; then
         emacsclient -t -a ''
     else
-        emacsclient $2
+        emacsclient $1
     fi
 }
 
